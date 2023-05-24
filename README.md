@@ -18,6 +18,7 @@
 
 ### Diagramas y explicaciones 
 
+#### Diagrama de clases:
 ```mermaid
 classDiagram
     class Ejemplo{
@@ -28,5 +29,14 @@ classDiagram
 
 ---
 ### Información para colaboradores
+
+---
+### Ramas del proyecto
+
+##### Las ramas usadas son:
+
++ Main: Solo para releases (Versiones funcionales del proyecto).
++ Development: Rama del desarrollo, usada para hacer merge al trabajo de los desarolladores antes de pasarlo a main, esta rama se usa tambien para actualizar readme y parecidos
++ Ramas de cada desarrollador: Ramas unicas de los desarroladores
 
 ---
