@@ -4,11 +4,16 @@
  */
 package View;
 
+import Temporal.Controller;
+
 /**
  *
  * @author ruben
  */
 public class MainUI extends javax.swing.JFrame {
+
+
+    Controller ctrl = new Controller();
 
     /**
      * Creates new form MainUI
@@ -26,82 +31,93 @@ public class MainUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
+        desktopMain = new javax.swing.JDesktopPane();
+        backgroundLabel = new javax.swing.JLabel();
+        menuBarMain = new CustomMenuBar();
+        exitMenu = new javax.swing.JMenu();
+        musicMenu = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
+        miscMenu = new javax.swing.JMenu();
+        adminMenu = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1920, Short.MAX_VALUE)
+        backgroundLabel.setIcon(new javax.swing.ImageIcon("src/main/java/Img/background.png")); // NOI18N
+
+        desktopMain.setLayer(backgroundLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout desktopMainLayout = new javax.swing.GroupLayout(desktopMain);
+        desktopMain.setLayout(desktopMainLayout);
+        desktopMainLayout.setHorizontalGroup(
+            desktopMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(backgroundLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 950, Short.MAX_VALUE)
+        desktopMainLayout.setVerticalGroup(
+            desktopMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(backgroundLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jMenuBar1.setPreferredSize(new java.awt.Dimension(70, 130));
-        jMenuBar1.setRequestFocusEnabled(false);
+        menuBarMain.setBorder(null);
+        menuBarMain.setPreferredSize(new java.awt.Dimension(70, 130));
+        menuBarMain.setRequestFocusEnabled(false);
 
-        jMenu2.setBackground(new java.awt.Color(0, 0, 0));
-        jMenu2.setBorder(null);
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/logo.png"))); // NOI18N
-        jMenu2.setBorderPainted(false);
-        jMenu2.setFocusable(false);
-        jMenu2.setPreferredSize(new java.awt.Dimension(189, 130));
-        jMenuBar1.add(jMenu2);
-        jMenu2.getAccessibleContext().setAccessibleDescription("");
-
-        jMenu3.setText("Musica");
-
-        jMenuItem1.setText("Canciones");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+        exitMenu.setBackground(new java.awt.Color(0, 0, 0));
+        exitMenu.setBorder(null);
+        exitMenu.setIcon(new javax.swing.ImageIcon("src/main/java/Img/logo.png")); // NOI18N
+        exitMenu.setBorderPainted(false);
+        exitMenu.setFocusable(false);
+        exitMenu.setPreferredSize(new java.awt.Dimension(189, 130));
+        exitMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitMenuMouseClicked(evt);
             }
         });
-        jMenu3.add(jMenuItem1);
+        menuBarMain.add(exitMenu);
+        exitMenu.getAccessibleContext().setAccessibleDescription("");
+
+        musicMenu.setIcon(new javax.swing.ImageIcon("src/main/java/Img/iconoMusica.png")); // NOI18N
+
+        jMenuItem1.setText("Canciones");
+
+        musicMenu.add(jMenuItem1);
 
         jMenuItem2.setText("PlayList");
-        jMenu3.add(jMenuItem2);
+        musicMenu.add(jMenuItem2);
 
-        jMenuBar1.add(jMenu3);
+        menuBarMain.add(musicMenu);
 
-        jMenu1.setText("Gestion");
-        jMenuBar1.add(jMenu1);
+        miscMenu.setText("Gestion");
+        menuBarMain.add(miscMenu);
 
-        jMenu4.setText("Admin");
-        jMenuBar1.add(jMenu4);
+        adminMenu.setText("Admin");
+        menuBarMain.add(adminMenu);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(menuBarMain);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(desktopMain)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(desktopMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    /**
+     *
+     * @param evt evento al que reaccionar
+     */
+    private void exitMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMenuMouseClicked
+        ctrl.login(this);
+    }//GEN-LAST:event_exitMenuMouseClicked
 
     /**
      * @param args the command line arguments
@@ -139,13 +155,14 @@ public class MainUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu adminMenu;
+    private javax.swing.JLabel backgroundLabel;
+    public javax.swing.JDesktopPane desktopMain;
+    private javax.swing.JMenu exitMenu;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuBar menuBarMain;
+    private javax.swing.JMenu miscMenu;
+    private javax.swing.JMenu musicMenu;
     // End of variables declaration//GEN-END:variables
 }
