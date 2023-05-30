@@ -4,6 +4,8 @@
  */
 package View;
 
+import java.awt.Color;
+
 /**
  *
  * @author dam1
@@ -28,38 +30,59 @@ public class Login extends javax.swing.JInternalFrame {
 
         loginPanel = new javax.swing.JPanel();
         pwdTextLabel = new javax.swing.JLabel();
-        pwdField = new javax.swing.JTextField();
+        jPasswordField1 = new javax.swing.JPasswordField();
         loginField = new javax.swing.JTextField();
         loginTextLabel = new javax.swing.JLabel();
+        signInButton = new javax.swing.JButton();
+        logInButton = new javax.swing.JButton();
         loginBackground = new javax.swing.JLabel();
 
         setBorder(null);
 
         loginPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pwdTextLabel.setFont(new java.awt.Font("Gotham Light", 1, 24)); // NOI18N
+        pwdTextLabel.setFont(new java.awt.Font("Gotham", 1, 24)); // NOI18N
         pwdTextLabel.setForeground(new java.awt.Color(255, 255, 255));
-        pwdTextLabel.setText("PASSWORD:");
-        loginPanel.add(pwdTextLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 200, 40));
+        pwdTextLabel.setText("CONTRASEÑA:");
+        loginPanel.add(pwdTextLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 200, 40));
 
-        pwdField.setBackground(new java.awt.Color(0, 0, 0));
-        pwdField.setFont(new java.awt.Font("Gotham Light", 1, 24)); // NOI18N
-        pwdField.setForeground(new java.awt.Color(255, 255, 255));
-        pwdField.setText("jTextField1");
-        pwdField.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 0), new java.awt.Color(0, 102, 51), new java.awt.Color(0, 102, 51), new java.awt.Color(0, 51, 51)));
-        loginPanel.add(pwdField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 290, 40));
+        jPasswordField1.setBackground(new java.awt.Color(0, 0, 0));
+        jPasswordField1.setFont(new java.awt.Font("Gotham", 1, 24)); // NOI18N
+        jPasswordField1.setForeground(new java.awt.Color(153, 153, 153));
+        jPasswordField1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 0), new java.awt.Color(0, 102, 0), new java.awt.Color(0, 102, 51), new java.awt.Color(0, 51, 51)));
+
+        loginPanel.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 290, 40));
 
         loginField.setBackground(new java.awt.Color(0, 0, 0));
-        loginField.setFont(new java.awt.Font("Gotham Light", 1, 24)); // NOI18N
-        loginField.setForeground(new java.awt.Color(255, 255, 255));
-        loginField.setText("jTextField1");
+        loginField.setFont(new java.awt.Font("Gotham", 1, 24)); // NOI18N
+        loginField.setForeground(new java.awt.Color(153, 153, 153));
+        loginField.setText("Usuario");
         loginField.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 0), new java.awt.Color(0, 102, 51), new java.awt.Color(0, 102, 51), new java.awt.Color(0, 51, 51)));
+        loginField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginFieldActionPerformed(evt);
+            }
+        });
         loginPanel.add(loginField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 290, 40));
 
-        loginTextLabel.setFont(new java.awt.Font("Gotham Light", 1, 24)); // NOI18N
+        loginTextLabel.setFont(new java.awt.Font("Gotham", 1, 24)); // NOI18N
         loginTextLabel.setForeground(new java.awt.Color(255, 255, 255));
-        loginTextLabel.setText("USER:");
-        loginPanel.add(loginTextLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 160, 40));
+        loginTextLabel.setText("USUARIO:");
+        loginPanel.add(loginTextLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 160, 40));
+
+        signInButton.setBackground(new java.awt.Color(0, 0, 0));
+        signInButton.setFont(new java.awt.Font("Gotham", 1, 18)); // NOI18N
+        signInButton.setForeground(new java.awt.Color(255, 255, 255));
+        signInButton.setText("SIGN IN");
+        signInButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 0), new java.awt.Color(0, 102, 0), new java.awt.Color(0, 102, 51), new java.awt.Color(0, 51, 51)));
+        loginPanel.add(signInButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, 110, 40));
+
+        logInButton.setBackground(new java.awt.Color(0, 0, 0));
+        logInButton.setFont(new java.awt.Font("Gotham", 1, 18)); // NOI18N
+        logInButton.setForeground(new java.awt.Color(255, 255, 255));
+        logInButton.setText("LOG IN");
+        logInButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 0), new java.awt.Color(0, 102, 0), new java.awt.Color(0, 102, 51), new java.awt.Color(0, 51, 51)));
+        loginPanel.add(logInButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 510, 110, 40));
 
         loginBackground.setIcon(new javax.swing.ImageIcon("src/main/java/Img/background.png")); // NOI18N
         loginPanel.add(loginBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 580));
@@ -78,13 +101,41 @@ public class Login extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void loginFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_loginFieldActionPerformed
+
+    private void loginFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_loginFieldFocusGained
+        if(loginField.getText().equals("Usuario")){
+            loginField.setText("");
+            loginField.setForeground(new Color(255, 255, 255));
+        }
+    }//GEN-LAST:event_loginFieldFocusGained
+
+    private void loginFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_loginFieldFocusLost
+        if(loginField.getText().equals("")){
+            loginField.setText("Usuario");
+            loginField.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_loginFieldFocusLost
+
+    private void jPasswordField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordField1FocusGained
+
+    }//GEN-LAST:event_jPasswordField1FocusGained
+
+    private void jPasswordField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordField1FocusLost
+
+    }//GEN-LAST:event_jPasswordField1FocusLost
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JButton logInButton;
     private javax.swing.JLabel loginBackground;
     private javax.swing.JTextField loginField;
     private javax.swing.JPanel loginPanel;
     private javax.swing.JLabel loginTextLabel;
-    private javax.swing.JTextField pwdField;
     private javax.swing.JLabel pwdTextLabel;
+    private javax.swing.JButton signInButton;
     // End of variables declaration//GEN-END:variables
 }
