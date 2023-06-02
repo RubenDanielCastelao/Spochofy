@@ -7,7 +7,7 @@ import java.util.List;
 public class Whatevs {
 
     public void whatevsMusic() {
-        File musicFolder = new File("/home/dam1/Jay/Spochofy/Spochofy/src/music");
+        File musicFolder = new File("src\\music");
         File[] musicFiles = musicFolder.listFiles((dir, name) -> name.endsWith(".mp3"));
 
         // Crear una lista de nombres de archivos
