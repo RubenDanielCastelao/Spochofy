@@ -40,3 +40,58 @@ classDiagram
 + Ramas de cada desarrollador: Ramas unicas de los desarroladores
 
 ---
+### Diagrama de base de datos
+
+```mermaid
+erDiagram
+USUARIOS ||--o{ LISTASREP : organizan
+
+    USUARIOS {
+
+        INTEGER uid
+        CHAR unombre
+        CHAR ucontrasena
+    }
+
+    LISTASREP {
+
+        INTEGER lid
+        CHAR lnombre
+    }
+
+    LISTASREP }o--o{ CANCIONES : componen
+
+    CANCIONES {
+
+        INTEGER cid
+        CHAR ctitulo
+    }
+
+    CANCIONES }o--|| ANYOS : salen
+
+    ANYOS {
+
+        INTEGER yid
+        CHAR ynumero
+    }
+
+    CANCIONES }|--|| ALBUMES : tienen
+
+    ALBUMES {
+
+        INTEGER aid
+        CHAR atitulo
+    }
+
+    CANCIONES }|--|| ARTISTAS : crean
+
+    ARTISTAS {
+
+        INTEGER atid
+        CHAR atnombre
+    }
+
+    ALBUMES }o--|| ANYOS : pertenecen
+
+    ARTISTAS ||--o{ ALBUMES : hacen 
+```
