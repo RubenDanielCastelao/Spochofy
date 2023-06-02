@@ -15,7 +15,6 @@ public class CustomMenuBar extends JMenuBar {
       @Override
       protected void paintComponent(Graphics g){
             super.paintComponent(g);
-
             g.drawImage(bgimg,0,0,getWidth(),getHeight(),this);
       }
 }

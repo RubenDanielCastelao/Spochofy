@@ -35,13 +35,12 @@
           </AccessibilityProperties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="exitMenuMouseClicked"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exitMenuActionPerformed"/>
           </Events>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="musicMenu">
+        <Menu class="javax.swing.JMenu" name="cancionesMenu">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Img/iconoMusica.png"/>
+              <Image iconType="3" name="/Img/canciones.png"/>
             </Property>
           </Properties>
           <SubComponents>
@@ -60,14 +59,33 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="miscMenu">
+        <Menu class="javax.swing.JMenu" name="listasMenu">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Gestion"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Img/listas.png"/>
+            </Property>
           </Properties>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="adminMenu">
+        <Menu class="javax.swing.JMenu" name="artistasMenu">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Admin"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Img/artistas.png"/>
+            </Property>
+          </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="albumMenu">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Img/albumes.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
+          </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="anyosManu">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Img/anyos.png"/>
+            </Property>
           </Properties>
         </Menu>
       </SubComponents>

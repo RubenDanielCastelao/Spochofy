@@ -5,6 +5,7 @@
 package View;
 
 import Temporal.Controller;
+import java.awt.event.ActionEvent;
 
 /**
  *
@@ -33,11 +34,13 @@ public class MainUI extends javax.swing.JFrame {
         backgroundLabel = new javax.swing.JLabel();
         menuBarMain = new CustomMenuBar();
         exitMenu = new javax.swing.JMenu();
-        musicMenu = new javax.swing.JMenu();
+        cancionesMenu = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        miscMenu = new javax.swing.JMenu();
-        adminMenu = new javax.swing.JMenu();
+        listasMenu = new javax.swing.JMenu();
+        artistasMenu = new javax.swing.JMenu();
+        albumMenu = new javax.swing.JMenu();
+        anyosManu = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,22 +77,27 @@ public class MainUI extends javax.swing.JFrame {
         menuBarMain.add(exitMenu);
         exitMenu.getAccessibleContext().setAccessibleDescription("");
 
-        musicMenu.setIcon(new javax.swing.ImageIcon("src/main/java/Img/iconoMusica.png")); // NOI18N
+        cancionesMenu.setIcon(new javax.swing.ImageIcon("src/main/java/Img/canciones.png")); // NOI18N
 
-        jMenuItem1.setText("Canciones");
-
-        musicMenu.add(jMenuItem1);
+        cancionesMenu.add(jMenuItem1);
 
         jMenuItem2.setText("PlayList");
-        musicMenu.add(jMenuItem2);
+        cancionesMenu.add(jMenuItem2);
 
-        menuBarMain.add(musicMenu);
+        menuBarMain.add(cancionesMenu);
 
-        miscMenu.setText("Gestion");
-        menuBarMain.add(miscMenu);
+        listasMenu.setIcon(new javax.swing.ImageIcon("src/main/java/Img/listas.png")); // NOI18N
+        menuBarMain.add(listasMenu);
 
-        adminMenu.setText("Admin");
-        menuBarMain.add(adminMenu);
+        artistasMenu.setIcon(new javax.swing.ImageIcon("src/main/java/Img/artistas.png")); // NOI18N
+        menuBarMain.add(artistasMenu);
+
+        albumMenu.setIcon(new javax.swing.ImageIcon("src/main/java/Img/albumes.png")); // NOI18N
+        albumMenu.setToolTipText("");
+        menuBarMain.add(albumMenu);
+
+        anyosManu.setIcon(new javax.swing.ImageIcon("src/main/java/Img/anyos.png")); // NOI18N
+        menuBarMain.add(anyosManu);
 
         setJMenuBar(menuBarMain);
 
@@ -153,14 +161,16 @@ public class MainUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu adminMenu;
+    private javax.swing.JMenu albumMenu;
+    private javax.swing.JMenu anyosManu;
+    private javax.swing.JMenu artistasMenu;
     private javax.swing.JLabel backgroundLabel;
+    private javax.swing.JMenu cancionesMenu;
     public javax.swing.JDesktopPane desktopMain;
     private javax.swing.JMenu exitMenu;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenu listasMenu;
     private javax.swing.JMenuBar menuBarMain;
-    private javax.swing.JMenu miscMenu;
-    private javax.swing.JMenu musicMenu;
     // End of variables declaration//GEN-END:variables
 }
