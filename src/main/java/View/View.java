@@ -8,7 +8,7 @@ public class View {
        */
       public void openLogin(MainUI ui) {
             //creo y añado la interfaz de login
-            Login logui = new Login();
+            Sign logui = new Sign();
             ui.desktopMain.add(logui);
 
             //configuraciones para la interfaz de login
