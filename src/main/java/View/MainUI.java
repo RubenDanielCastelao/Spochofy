@@ -13,8 +13,6 @@ import Temporal.Controller;
 public class MainUI extends javax.swing.JFrame {
 
 
-    Controller ctrl = new Controller();
-
     /**
      * Creates new form MainUI
      */
@@ -116,7 +114,7 @@ public class MainUI extends javax.swing.JFrame {
      * @param evt evento al que reaccionar
      */
     private void exitMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMenuMouseClicked
-        ctrl.login(this);
+        Controller.login();
     }//GEN-LAST:event_exitMenuMouseClicked
 
     /**
