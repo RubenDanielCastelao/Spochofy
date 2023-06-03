@@ -6,6 +6,7 @@ package View;
 
 import Temporal.Controller;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
 
 /**
  *
@@ -78,6 +79,37 @@ public class MainUI extends javax.swing.JFrame {
         exitMenu.getAccessibleContext().setAccessibleDescription("");
 
         cancionesMenu.setIcon(new javax.swing.ImageIcon("src/main/java/Img/canciones.png")); // NOI18N
+        cancionesMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancionesMenuMouseClicked(evt);
+            }
+        });
+
+        albumMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                albumMenuMouseClicked(evt);
+            }
+        });
+
+        anyosManu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                anyosMenuMouseClicked(evt);
+            }
+        });
+
+        listasMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listasMenuMouseClicked(evt);
+            }
+        });
+
+        artistasMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                artistasMenuMouseClicked(evt);
+            }
+        });
+
+        jMenuItem1.setText("Canciones");
 
         cancionesMenu.add(jMenuItem1);
 
@@ -122,13 +154,30 @@ public class MainUI extends javax.swing.JFrame {
      * @param evt evento al que reaccionar
      */
     private void exitMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMenuMouseClicked
-        Controller.login();
+        Controller.login(this);
     }//GEN-LAST:event_exitMenuMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    private void albumMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancionesMenuActionPerformed
+        Controller.albums(this);
+    }//GEN-LAST:event_cancionesMenuActionPerformed
+
+    private void anyosMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancionesMenuActionPerformed
+        Controller.years(this);
+    }//GEN-LAST:event_cancionesMenuActionPerformed
+
+    private void artistasMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancionesMenuActionPerformed
+        Controller.artistas(this);
+    }//GEN-LAST:event_cancionesMenuActionPerformed
+
+    private void listasMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancionesMenuActionPerformed
+        Controller.playlists(this);
+    }//GEN-LAST:event_cancionesMenuActionPerformed
+
+    private void cancionesMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancionesMenuActionPerformed
+        Controller.songs(this);
+    }//GEN-LAST:event_cancionesMenuActionPerformed
+
+    public static void launch() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -171,6 +220,6 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenu listasMenu;
-    private javax.swing.JMenuBar menuBarMain;
+    public javax.swing.JMenuBar menuBarMain;
     // End of variables declaration//GEN-END:variables
 }

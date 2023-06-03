@@ -5,6 +5,7 @@
 package View;
 
 import Temporal.Controller;
+import com.sun.tools.javac.Main;
 
 import java.awt.Color;
 
@@ -14,10 +15,13 @@ import java.awt.Color;
  */
 public class Login extends javax.swing.JInternalFrame {
 
+
+    MainUI ui;
     /**
      * Creates new form Login
      */
-    public Login() {
+    public Login(MainUI ui) {
+        this.ui = ui;
         initComponents();
     }
 
@@ -149,8 +153,7 @@ public class Login extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_loginpwdFieldFocusLost
 
     private void signInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInButtonActionPerformed
-        Controller.logui.dispose();
-        Controller.singin();
+        Controller.singin(ui);
     }//GEN-LAST:event_signInButtonActionPerformed
 
 

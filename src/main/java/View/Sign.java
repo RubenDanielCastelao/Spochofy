@@ -14,10 +14,13 @@ import java.awt.Color;
  */
 public class Sign extends javax.swing.JInternalFrame {
 
+    MainUI ui;
+
     /**
      * Creates new form Login
      */
     public Sign() {
+        this.ui = ui;
         initComponents();
     }
 
@@ -149,8 +152,7 @@ public class Sign extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_signpwdFieldFocusLost
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        Controller.signui.dispose();
-        Controller.login();
+        Controller.login(ui);
     }//GEN-LAST:event_cancelButtonActionPerformed
 
 
