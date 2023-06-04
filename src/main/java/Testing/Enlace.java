@@ -1,36 +1,70 @@
 package Testing;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ * Clase para la conexión a la base de datos.
+ */
 
 public class Enlace {
 
-    DefaultTableModel model; // Modelo de la tabla
-    Connection connect; // Conexión a la base de datos
-    String url = "src/database/spochofy.db"; // Ruta de la base de datos
+
+    private static Enlace con = null;
+    Connection ccn = null;
+    Statement st = null;
 
     /**
-     * Método para conectar a la base de datos
+     * Conexión a la base de datos.
      */
-    public void conectarBD(){
-
-       try{ connect = DriverManager.getConnection(url);}
-       catch(SQLException e){JOptionPane.showMessageDialog(null, e.getMessage());}
-
+    private Enlace() {
+        try {
+            String rutafile = "/database/spochofy.db";
+            String Url = "jdbc:sqlite:src" + rutafile;
+            ccn = DriverManager.getConnection(Url);
+            st = ccn.createStatement();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "CONEXIÓN FALLIDA: " + e);
+        }
     }
 
     /**
-     * Método para desconectar de la base de datos
+     * Singleton para la conexión a la base de datos.
+     * @return
      */
-    public void desconectarBD(){
+    public static Enlace getInstance() {
+        if (con == null) {
+            con = new Enlace();
+        }
+        return con;
+    }
 
-        try{ connect.close();}
-        catch(SQLException e){JOptionPane.showMessageDialog(null, e.getMessage());}
-
+    /**
+     * Getter para la conexión a la base de datos.
+     * @return
+     */
+    public Connection getConnection() {
+        return ccn;
     }
 
 
+    /**
+     * Método para cerrar la conexión a la base de datos.
+     */
+    public void Desconexion() {
+        try {
+            ccn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            System.exit(0);
+        }
+
+
+    }
 }
