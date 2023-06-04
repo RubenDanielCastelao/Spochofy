@@ -106,6 +106,11 @@ public class Login extends javax.swing.JInternalFrame {
                 signInButtonActionPerformed(evt);
             }
         });
+        logInButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logInButtonActionPerformed(evt);
+            }
+        });
         loginPanel.add(signInButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, 110, 40));
 
         logInButton.setBackground(new java.awt.Color(0, 0, 0));
@@ -155,11 +160,14 @@ public class Login extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_loginpwdFieldFocusGained
 
     private void loginpwdFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_loginpwdFieldFocusLost
-
     }//GEN-LAST:event_loginpwdFieldFocusLost
 
     private void signInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInButtonActionPerformed
         Controller.singin(ui);
+    }//GEN-LAST:event_signInButtonActionPerformed
+    private void logInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInButtonActionPerformed
+        Controller.login(ui,loginField.getText());
+        this.dispose();
     }//GEN-LAST:event_signInButtonActionPerformed
 
 
@@ -168,8 +176,8 @@ public class Login extends javax.swing.JInternalFrame {
     private javax.swing.JLabel loginBackground;
     private javax.swing.JTextField loginField;
     private javax.swing.JPanel loginPanel;
-    private javax.swing.JLabel loginTextLabel;
-    private javax.swing.JPasswordField loginpwdField;
+    public javax.swing.JLabel loginTextLabel;
+    public javax.swing.JPasswordField loginpwdField;
     private javax.swing.JLabel pwdTextLabel;
     private javax.swing.JButton signInButton;
     // End of variables declaration//GEN-END:variables

@@ -1,8 +1,11 @@
 package View;
 
+import Controller.Controller;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+
 
 public class View {
 
@@ -176,5 +179,12 @@ public class View {
             for (JInternalFrame allFrame : ui.desktopMain.getAllFrames()) {
                   allFrame.dispose();
             }
+      }
+      /**
+       *
+       * @param ui Objeto de la MainUI usado para modificar la interfaz general, actualizando el nombre de usuario
+       */
+      public void actualizarUsuario(MainUI ui, String username) {
+            ui.usuarioText.setText(username);
       }
 }

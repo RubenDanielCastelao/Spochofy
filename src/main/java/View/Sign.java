@@ -159,7 +159,7 @@ public class Sign extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_signpwdFieldFocusLost
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        Controller.login(ui);
+        Controller.openLogin(ui);
     }//GEN-LAST:event_cancelButtonActionPerformed
 
 

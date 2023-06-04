@@ -44,7 +44,7 @@ public class MainUI extends javax.swing.JFrame {
         artistasMenu = new javax.swing.JMenu();
         albumMenu = new javax.swing.JMenu();
         anyosManu = new javax.swing.JMenu();
-        jMenu1 = new javax.swing.JMenu();
+        usuarioText = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -153,9 +153,9 @@ public class MainUI extends javax.swing.JFrame {
         anyosManu.setPreferredSize(new java.awt.Dimension(270, 76));
         menuBarMain.add(anyosManu);
 
-        jMenu1.setText("USUARIO: ");
-        jMenu1.setFont(new java.awt.Font("Gotham", 1, 18)); // NOI18N
-        menuBarMain.add(jMenu1);
+        usuarioText.setText("USUARIO: ");
+        usuarioText.setFont(new java.awt.Font("Gotham", 1, 18)); // NOI18N
+        menuBarMain.add(usuarioText);
 
         setJMenuBar(menuBarMain);
 
@@ -211,10 +211,10 @@ public class MainUI extends javax.swing.JFrame {
         Controller.playlists(this);
     }//GEN-LAST:event_showListasActionPerformed
     private void desktopMainMouseClicked(MouseEvent evt) {//GEN-FIRST:event_showListasActionPerformed
-        Controller.login(this);
+        Controller.openLogin(this);
     }//GEN-LAST:event_showListasActionPerformed
     private void logOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showListasActionPerformed
-        Controller.login(this);
+        Controller.openLogin(this);
     }//GEN-LAST:event_showListasActionPerformed
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showListasActionPerformed
         Controller.exit(this);
@@ -253,18 +253,18 @@ public class MainUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu albumMenu;
-    private javax.swing.JMenu anyosManu;
-    private javax.swing.JMenu artistasMenu;
+    public javax.swing.JMenu albumMenu;
+    public javax.swing.JMenu anyosManu;
+    public javax.swing.JMenu artistasMenu;
     private javax.swing.JLabel backgroundLabel;
-    private javax.swing.JMenu cancionesMenu;
+    public javax.swing.JMenu cancionesMenu;
     private javax.swing.JMenuItem createListas;
     public javax.swing.JDesktopPane desktopMain;
     private javax.swing.JMenu exitMenu;
-    private javax.swing.JMenu jMenu1;
+    public javax.swing.JMenu usuarioText;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenu listasMenu;
+    public javax.swing.JMenu listasMenu;
     private javax.swing.JMenuBar menuBarMain;
     private javax.swing.JMenuItem showListas;
     // End of variables declaration//GEN-END:variables

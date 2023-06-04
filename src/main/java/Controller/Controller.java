@@ -4,14 +4,19 @@ import View.*;
 
 public class Controller {
 
+
       public static View view = new View();
 
       public static void main(String[] args) {
             MainUI.launch();
       }
 
+      //Inicia sesion en el programa
+      public static void login(MainUI ui, String username) {
+            view.actualizarUsuario(ui, username);
+      }
       //Abre una interfaz de LogIn
-      public static void login(MainUI ui){
+      public static void openLogin(MainUI ui){
             view.closeUIs(ui);
             view.openLogin(ui);
       }
