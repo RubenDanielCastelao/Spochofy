@@ -1,10 +1,7 @@
-package Clases;
+package BD;
 
 import javax.swing.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,7 +15,7 @@ public class Enlace {
     /**
      * Atributos para la conexión a la base de datos.
      */
-    Connection conexion;
+    public Connection conexion;
     private static Enlace conectar = null;
     String url = "jdbc:sqlite:src/database/spochofy.db";
 
@@ -28,7 +25,6 @@ public class Enlace {
      * Conexión a la base de datos.
      */
     private Enlace() {
-
         try {
             conexion = DriverManager.getConnection(url);
             if (conexion != null) {
@@ -61,4 +57,5 @@ public class Enlace {
             Logger.getLogger(Enlace.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 }
