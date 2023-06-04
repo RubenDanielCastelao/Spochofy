@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Clase para la reproducción de la música.
  */
-public class Whatevs {
+public class Reproduccion {
 
     /**
      * Método para la reproducción de la música.
