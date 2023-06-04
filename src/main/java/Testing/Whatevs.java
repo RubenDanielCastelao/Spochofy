@@ -4,8 +4,14 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clase para la reproducción de la música.
+ */
 public class Whatevs {
 
+    /**
+     * Método para la reproducción de la música.
+     */
     public void whatevsMusic() {
         File musicFolder = new File("src\\music");
         File[] musicFiles = musicFolder.listFiles((dir, name) -> name.endsWith(".mp3"));
