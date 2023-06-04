@@ -5,13 +5,10 @@ import View.*;
 public class Controller {
 
       public static View view = new View();
-      public static Sign signui = new Sign();
-      public  static ListasUI listaui = new ListasUI();
 
       public static void main(String[] args) {
             MainUI.launch();
       }
-
 
       //Abre una interfaz de LogIn
       public static void login(MainUI ui){
@@ -23,6 +20,12 @@ public class Controller {
             view.closeUIs(ui);
             view.openSignin(ui);
       }
+      //Abre una interfaz de crear PlayList
+      public static void createPlayList(MainUI ui){
+            view.closeUIs(ui);
+            view.openCreatePlayList(ui);
+      }
+
       //Abre una interfaz para mostrar todas las canciones
       public static void songs(MainUI ui) {
             view.closeUIs(ui);
@@ -47,5 +50,9 @@ public class Controller {
       public static void years(MainUI ui){
             view.closeUIs(ui);
             view.openYears(ui);
+      }
+
+      public static void exit(MainUI ui){
+            view.exit(ui);
       }
 }

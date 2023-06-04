@@ -7,7 +7,8 @@ package View;
 import Temporal.Controller;
 import com.sun.tools.javac.Main;
 
-import java.awt.Color;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -56,6 +57,9 @@ public class Login extends javax.swing.JInternalFrame {
         loginpwdField.setFont(new java.awt.Font("Gotham", 1, 24)); // NOI18N
         loginpwdField.setForeground(new java.awt.Color(153, 153, 153));
         loginpwdField.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 0), new java.awt.Color(0, 102, 0), new java.awt.Color(0, 102, 51), new java.awt.Color(0, 51, 51)));
+        loginpwdField.setBorder(BorderFactory.createCompoundBorder(
+                loginpwdField.getBorder(), BorderFactory.createEmptyBorder(0, 10, 0, 0)
+        ));
         loginpwdField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 loginpwdFieldFocusGained(evt);
@@ -70,6 +74,9 @@ public class Login extends javax.swing.JInternalFrame {
         loginField.setFont(new java.awt.Font("Gotham", 1, 24)); // NOI18N
         loginField.setForeground(new java.awt.Color(153, 153, 153));
         loginField.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 0), new java.awt.Color(0, 102, 51), new java.awt.Color(0, 102, 51), new java.awt.Color(0, 51, 51)));
+        loginField.setBorder(BorderFactory.createCompoundBorder(
+                loginField.getBorder(), BorderFactory.createEmptyBorder(0, 10, 0, 0)
+        ));
         loginField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 loginFieldFocusGained(evt);

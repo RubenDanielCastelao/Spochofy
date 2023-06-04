@@ -27,32 +27,48 @@ public class ListasUI extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        stopButton = new javax.swing.JButton();
+        playButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaListas = new javax.swing.JTable();
         titleListas = new javax.swing.JLabel();
+        logoDecoracionListas = new javax.swing.JLabel();
         bgListas = new javax.swing.JLabel();
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setBackground(new java.awt.Color(0, 102, 0));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        stopButton.setIcon(new javax.swing.ImageIcon("src/main/java/Img/stopButton.png")); // NOI18N
+        stopButton.setContentAreaFilled(false);
+        jPanel1.add(stopButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 780, 80, 80));
+
+        playButton.setIcon(new javax.swing.ImageIcon("src/main/java/Img/playButton.png")); // NOI18N
+        playButton.setToolTipText("");
+        playButton.setContentAreaFilled(false);
+        jPanel1.add(playButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 780, 80, 80));
+
+        tablaListas.setBackground(new java.awt.Color(77, 133, 77));
+        tablaListas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tablaListas.setFillsViewportHeight(true);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 20, 1060, 860));
+        tablaListas.setGridColor(new java.awt.Color(0, 51, 51));
+        tablaListas.setSelectionBackground(new java.awt.Color(33, 100, 10));
+        jScrollPane1.setViewportView(tablaListas);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 20, 1070, 880));
 
         titleListas.setFont(new java.awt.Font("Gotham", 1, 36)); // NOI18N
         titleListas.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(titleListas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 770, 80));
+
+        logoDecoracionListas.setIcon(new javax.swing.ImageIcon("src/main/java/Img/spochofyLogoGrande.png")); // NOI18N
+        jPanel1.add(logoDecoracionListas, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 510, 420));
 
         bgListas.setIcon(new javax.swing.ImageIcon("src/main/java/Img/background.png")); // NOI18N
         jPanel1.add(bgListas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1910, 920));
@@ -74,9 +90,12 @@ public class ListasUI extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bgListas;
+    private javax.swing.JLabel logoDecoracionListas;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable tablaListas;
+    private javax.swing.JButton playButton;
+    private javax.swing.JButton stopButton;
     public javax.swing.JLabel titleListas;
     // End of variables declaration//GEN-END:variables
 }

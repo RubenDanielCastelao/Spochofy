@@ -6,6 +6,7 @@ package View;
 
 import Temporal.Controller;
 
+import javax.swing.*;
 import java.awt.Color;
 
 /**
@@ -55,6 +56,9 @@ public class Sign extends javax.swing.JInternalFrame {
         signpwdField.setFont(new java.awt.Font("Gotham", 1, 24)); // NOI18N
         signpwdField.setForeground(new java.awt.Color(153, 153, 153));
         signpwdField.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 0), new java.awt.Color(0, 102, 0), new java.awt.Color(0, 102, 51), new java.awt.Color(0, 51, 51)));
+        signpwdField.setBorder(BorderFactory.createCompoundBorder(
+                signpwdField.getBorder(), BorderFactory.createEmptyBorder(0, 10, 0, 0)
+        ));
         signpwdField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 signpwdFieldFocusGained(evt);
@@ -69,6 +73,9 @@ public class Sign extends javax.swing.JInternalFrame {
         signinField.setFont(new java.awt.Font("Gotham", 1, 24)); // NOI18N
         signinField.setForeground(new java.awt.Color(153, 153, 153));
         signinField.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 0), new java.awt.Color(0, 102, 51), new java.awt.Color(0, 102, 51), new java.awt.Color(0, 51, 51)));
+        signinField.setBorder(BorderFactory.createCompoundBorder(
+                signinField.getBorder(), BorderFactory.createEmptyBorder(0, 10, 0, 0)
+        ));
         signinField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 signinFieldFocusGained(evt);
@@ -92,7 +99,7 @@ public class Sign extends javax.swing.JInternalFrame {
         cancelButton.setBackground(new java.awt.Color(0, 0, 0));
         cancelButton.setFont(new java.awt.Font("Gotham", 1, 18)); // NOI18N
         cancelButton.setForeground(new java.awt.Color(255, 255, 255));
-        cancelButton.setText("CANCEL");
+        cancelButton.setText("VOLVER");
         cancelButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 0), new java.awt.Color(0, 102, 0), new java.awt.Color(0, 102, 51), new java.awt.Color(0, 51, 51)));
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

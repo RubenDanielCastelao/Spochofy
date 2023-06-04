@@ -5,7 +5,8 @@
 package View;
 
 import Temporal.Controller;
-import java.awt.event.ActionEvent;
+
+import javax.swing.*;
 import java.awt.event.MouseEvent;
 
 /**
@@ -35,13 +36,16 @@ public class MainUI extends javax.swing.JFrame {
         backgroundLabel = new javax.swing.JLabel();
         menuBarMain = new CustomMenuBar();
         exitMenu = new javax.swing.JMenu();
-        cancionesMenu = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        cancionesMenu = new javax.swing.JMenu();
         listasMenu = new javax.swing.JMenu();
+        showListas = new javax.swing.JMenuItem();
+        createListas = new javax.swing.JMenuItem();
         artistasMenu = new javax.swing.JMenu();
         albumMenu = new javax.swing.JMenu();
         anyosManu = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,24 +74,20 @@ public class MainUI extends javax.swing.JFrame {
         exitMenu.setBorderPainted(false);
         exitMenu.setFocusable(false);
         exitMenu.setPreferredSize(new java.awt.Dimension(189, 130));
-        exitMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+        desktopMain.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                exitMenuMouseClicked(evt);
+                desktopMainMouseClicked(evt);
             }
         });
-        menuBarMain.add(exitMenu);
-        exitMenu.getAccessibleContext().setAccessibleDescription("");
-
-        cancionesMenu.setIcon(new javax.swing.ImageIcon("src/main/java/Img/canciones.png")); // NOI18N
-        cancionesMenu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cancionesMenuMouseClicked(evt);
-            }
-        });
-
         albumMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 albumMenuMouseClicked(evt);
+            }
+        });
+
+        cancionesMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancionesMenuMouseClicked(evt);
             }
         });
 
@@ -97,31 +97,53 @@ public class MainUI extends javax.swing.JFrame {
             }
         });
 
-        listasMenu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                listasMenuMouseClicked(evt);
-            }
-        });
-
         artistasMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 artistasMenuMouseClicked(evt);
             }
         });
 
-        jMenuItem1.setText("Canciones");
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_1, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        jMenuItem1.setText("Log Out");
+        exitMenu.add(jMenuItem1);
 
-        cancionesMenu.add(jMenuItem1);
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_2, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        jMenuItem2.setText("Exit");
+        exitMenu.add(jMenuItem2);
 
-        jMenuItem2.setText("PlayList");
-        cancionesMenu.add(jMenuItem2);
+        menuBarMain.add(exitMenu);
+        exitMenu.getAccessibleContext().setAccessibleDescription("");
+
+        cancionesMenu.setIcon(new javax.swing.ImageIcon("src/main/java/Img/canciones.png")); // NOI18N
 
         menuBarMain.add(cancionesMenu);
 
         listasMenu.setIcon(new javax.swing.ImageIcon("src/main/java/Img/listas.png")); // NOI18N
+        listasMenu.setPreferredSize(new java.awt.Dimension(300, 76));
+
+        showListas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_3, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        showListas.setText("Ver listas de reproducción");
+        showListas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showListasActionPerformed(evt);
+            }
+        });
+        listasMenu.add(showListas);
+
+        createListas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_4, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        createListas.setText("Crear listas de reproducción");
+        createListas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createListasActionPerformed(evt);
+            }
+        });
+        listasMenu.add(createListas);
+
         menuBarMain.add(listasMenu);
 
         artistasMenu.setIcon(new javax.swing.ImageIcon("src/main/java/Img/artistas.png")); // NOI18N
+        artistasMenu.setMinimumSize(new java.awt.Dimension(300, 66));
+        artistasMenu.setPreferredSize(new java.awt.Dimension(290, 66));
         menuBarMain.add(artistasMenu);
 
         albumMenu.setIcon(new javax.swing.ImageIcon("src/main/java/Img/albumes.png")); // NOI18N
@@ -129,7 +151,12 @@ public class MainUI extends javax.swing.JFrame {
         menuBarMain.add(albumMenu);
 
         anyosManu.setIcon(new javax.swing.ImageIcon("src/main/java/Img/anyos.png")); // NOI18N
+        anyosManu.setPreferredSize(new java.awt.Dimension(270, 76));
         menuBarMain.add(anyosManu);
+
+        jMenu1.setText("USUARIO: ");
+        jMenu1.setFont(new java.awt.Font("Gotham", 1, 18)); // NOI18N
+        menuBarMain.add(jMenu1);
 
         setJMenuBar(menuBarMain);
 
@@ -146,36 +173,53 @@ public class MainUI extends javax.swing.JFrame {
                 .addComponent(desktopMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOutActionPerformed(evt);
+            }
+        });
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitActionPerformed(evt);
+            }
+        });
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     *
-     * @param evt evento al que reaccionar
-     */
-    private void exitMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMenuMouseClicked
-        Controller.login(this);
-    }//GEN-LAST:event_exitMenuMouseClicked
 
-    private void albumMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancionesMenuActionPerformed
+
+    private void albumMenuMouseClicked(java.awt.event.MouseEvent evt) {                                              
         Controller.albums(this);
-    }//GEN-LAST:event_cancionesMenuActionPerformed
+    }                                             
 
-    private void anyosMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancionesMenuActionPerformed
+    private void anyosMenuMouseClicked(java.awt.event.MouseEvent evt) {                                              
         Controller.years(this);
-    }//GEN-LAST:event_cancionesMenuActionPerformed
+    }                                             
 
-    private void artistasMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancionesMenuActionPerformed
+    private void artistasMenuMouseClicked(java.awt.event.MouseEvent evt) {                                              
         Controller.artistas(this);
-    }//GEN-LAST:event_cancionesMenuActionPerformed
-
-    private void listasMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancionesMenuActionPerformed
-        Controller.playlists(this);
-    }//GEN-LAST:event_cancionesMenuActionPerformed
-
+    }
     private void cancionesMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancionesMenuActionPerformed
         Controller.songs(this);
     }//GEN-LAST:event_cancionesMenuActionPerformed
+
+    private void createListasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createListasActionPerformed
+        Controller.createPlayList(this);
+    }//GEN-LAST:event_createListasActionPerformed
+
+    private void showListasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showListasActionPerformed
+        Controller.playlists(this);
+    }//GEN-LAST:event_showListasActionPerformed
+    private void desktopMainMouseClicked(MouseEvent evt) {//GEN-FIRST:event_showListasActionPerformed
+        Controller.login(this);
+    }//GEN-LAST:event_showListasActionPerformed
+    private void logOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showListasActionPerformed
+        Controller.login(this);
+    }//GEN-LAST:event_showListasActionPerformed
+    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showListasActionPerformed
+        Controller.exit(this);
+    }//GEN-LAST:event_showListasActionPerformed
 
     public static void launch() {
         /* Set the Nimbus look and feel */
@@ -215,11 +259,14 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JMenu artistasMenu;
     private javax.swing.JLabel backgroundLabel;
     private javax.swing.JMenu cancionesMenu;
+    private javax.swing.JMenuItem createListas;
     public javax.swing.JDesktopPane desktopMain;
     private javax.swing.JMenu exitMenu;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenu listasMenu;
-    public javax.swing.JMenuBar menuBarMain;
+    private javax.swing.JMenuBar menuBarMain;
+    private javax.swing.JMenuItem showListas;
     // End of variables declaration//GEN-END:variables
 }
