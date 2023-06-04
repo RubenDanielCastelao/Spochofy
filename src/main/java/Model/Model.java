@@ -1,4 +1,4 @@
-package Temporal;
+package Model;
 
 public class Model {
 }

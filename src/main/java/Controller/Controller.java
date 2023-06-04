@@ -1,4 +1,4 @@
-package Temporal;
+package Controller;
 
 import View.*;
 

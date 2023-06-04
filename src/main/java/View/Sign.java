@@ -4,7 +4,7 @@
  */
 package View;
 
-import Temporal.Controller;
+import Controller.Controller;
 
 import javax.swing.*;
 import java.awt.Color;

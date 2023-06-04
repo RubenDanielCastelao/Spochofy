@@ -4,8 +4,7 @@
  */
 package View;
 
-import Temporal.Controller;
-import com.sun.tools.javac.Main;
+import Controller.Controller;
 
 import javax.swing.*;
 import java.awt.*;
