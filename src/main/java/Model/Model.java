@@ -1,17 +1,15 @@
 package Model;
 
 import BD.*;
-import javazoom.jl.decoder.JavaLayerException;
-import javazoom.jl.player.AudioDevice;
-import javazoom.jl.player.JavaSoundAudioDevice;
-import javazoom.jl.player.Player;
-import java.io.FileInputStream;
+import Controller.Controller;
+
 import java.sql.*;
 import java.util.ArrayList;
-import java.io.File;
 import java.util.List;
+import java.util.Observable;
+import org.example.BD.Enlace;
 
-public class Model implements Runnable {
+public class Model extends Observable {
 
     /**
      *
@@ -218,14 +216,17 @@ public class Model implements Runnable {
     /**
      * Método para añadir canciones a una playlist.
      *
-     * @param a
+     * @param a id de la playlist
+     * @param b id de la cancion
      * @return canciones
      */
     public void anyadirCancionAPlaylist(int a, int b) {
 
         try {
+
             PreparedStatement sentencia = E.conexion.prepareStatement("insert into componen values (" + a + "," + b + ")");
             sentencia.execute();
+
         } catch (SQLException e) {
             System.out.println("Error al añadir a la playlist: " + e.getMessage());
         }
@@ -234,14 +235,16 @@ public class Model implements Runnable {
 
     /**
      * Método para borrar canciones de una playlist.
-     * @param a
-     * @param b
+     * @param a id de la playlist
+     * @param b id de la cancion
      */
     public void borrarCancionDePlaylist(int a, int b) {
 
         try {
+
             PreparedStatement sentencia = E.conexion.prepareStatement("delete from componen where lid = '" + a + "' and cid = '" + b + "'");
             sentencia.execute();
+
         } catch (SQLException e) {
             System.out.println("Error al borrar de la playlist: " + e.getMessage());
         }
@@ -254,8 +257,13 @@ public class Model implements Runnable {
     public void borrarPlaylist(int a) {
 
         try {
+
             PreparedStatement sentencia = E.conexion.prepareStatement("delete from listasrep where lid = '" + a + "'");
             sentencia.execute();
+
+            //Se notifica al Observador que se ha borrado la playlist.
+            setChanged();
+            notifyObservers();
         } catch (SQLException e) {
             System.out.println("Error al borrar la playlist: " + e.getMessage());
         }
@@ -270,11 +278,14 @@ public class Model implements Runnable {
     public void crearPlaylist(String username, String lnombre) {
 
         try {
-
             int userid = checkUserID(username);
 
+            PreparedStatement sentencia = E.conexion.prepareStatement("insert into listasrep values (" + null + ", '" + lnombre + "','" + userid + "')");
+            sentencia.execute();
 
-            PreparedStatement sentencia = E.conexion.prepareStatement("insert into listasrep values (" + null + ", " + lnombre + "," + userid + ")");
+            //Se notifica al Observador que se ha creado la playlist.
+            setChanged();
+            notifyObservers();
         } catch (SQLException e) {
             System.out.println("Error al crear la playlist: " + e.getMessage());
         }
@@ -287,14 +298,18 @@ public class Model implements Runnable {
      */
     public int checkUserID(String username) {
 
+        ResultSet resultado = null;
         int aux = 999;
+
         try {
 
             PreparedStatement st = E.conexion.prepareStatement("select uid from usuarios where unombre = '" + username + "'");
-            st.execute();
-            aux = st.getResultSet().getInt("uid");
-            System.out.println(aux);
-            return aux;
+            resultado = st.executeQuery();
+            aux = resultado.getInt("uid");
+
+            resultado.close();
+            st.close();
+
         } catch (SQLException e) {
             System.out.println("Error al comprobar el usuario: " + e.getMessage());
         }
@@ -309,8 +324,13 @@ public class Model implements Runnable {
     public void cambiarNombrePlaylist(String nombrenuevo, int lid) {
 
         try {
+
             PreparedStatement sentencia = E.conexion.prepareStatement("update listasrep set lnombre = '" + nombrenuevo + "' where lid = '" + lid + "'");
             sentencia.execute();
+
+            //Se notifica al Observador que se ha cambiado el nombre de la playlist.
+            setChanged();
+            notifyObservers();
         } catch (SQLException e) {
             System.out.println("Error al cambiar el nombre de la playlist: " + e.getMessage());
         }
@@ -351,8 +371,9 @@ public class Model implements Runnable {
      */
     public void registrarse(String username, String contra) {
         try {
-            PreparedStatement sentencia = E.conexion.prepareStatement("INSERT INTO usuarios VALUES (" + username + ", " + contra + ")");
-            sentencia.executeQuery();
+            PreparedStatement sentencia = E.conexion.prepareStatement("INSERT INTO usuarios VALUES (" + null + ",'" + username + "', '" + contra + "')");
+            sentencia.execute();
+
         } catch (SQLException e) {
             System.out.println("Registro fallido: " + e.getMessage());
         }
@@ -366,32 +387,32 @@ public class Model implements Runnable {
      * @param contra
      * @return el resultado del inicio de sesión: 1 si es correcto, 2 si la contraseña es incorrecta y 3 si el usuario no existe
      */
-    public int login(String username, String contra){
-        String aux1, aux2;
+    public boolean login(String username, String contra){
+
+        ResultSet resultado = null;
+        boolean found= false;
+        boolean logged = false;
+
         try{
 
-            PreparedStatement sentencia = E.conexion.prepareStatement("SELECT unombre FROM usuario");
-            sentencia.executeQuery();
-            aux1 = sentencia.getResultSet().getString("unombre");
-
-            PreparedStatement sentencia2 = E.conexion.prepareStatement("SELECT ucontrasena FROM usuario");
-            sentencia.executeQuery();
-            aux2 = sentencia2.getResultSet().getString("ucontrasena");
-
-            if(aux1.equals(username) && aux2.equals(contra)){
-                return 1;
-
-            } else if(aux1.equals(username)&&aux2.equals(contra)==false){
-                return 2;
-
-            } else{
-                return 3;
+            PreparedStatement sentencia = E.conexion.prepareStatement("SELECT unombre, ucontrasena FROM usuarios");
+            resultado = sentencia.executeQuery();
+            String pwd = "";
+            while(resultado.next() && !found){
+                if (resultado.getString("unombre").equals(username)) {
+                    found = true;
+                    pwd = resultado.getString("ucontrasena");
+                }
             }
+            if (found && pwd.equals(contra)) {
+                logged = true;
+            }
+
 
         }catch (SQLException e){
             System.out.println("Error al hacer login: " + e.getMessage());
         }
-        return 999;
+        return logged;
     }
 
     /**
@@ -407,13 +428,17 @@ public class Model implements Runnable {
 
         try {
 
-            PreparedStatement sentencia = E.conexion.prepareStatement("SELECT * FROM listasrep WHERE uid  = '" + aux + "')");
+            PreparedStatement sentencia = E.conexion.prepareStatement("SELECT * FROM listasrep WHERE uid  = '" + aux + "'");
 
             resultado = sentencia.executeQuery();
             while (resultado.next()) {
                 ListasRep l = new ListasRep(resultado.getInt("lid"), resultado.getInt("uid"), resultado.getString("lnombre"));
                 listasrep.add(l);
             }
+
+            resultado.close();
+            sentencia.close();
+
         } catch (SQLException e) {
             System.out.println("Error al mostrar las listas de reproducción: " + e.getMessage());
         }
@@ -427,15 +452,21 @@ public class Model implements Runnable {
      */
     public String verAlbum(int num){
 
+        ResultSet resultado = null;
+        String aux = null;
+
         try{
-            PreparedStatement sentencia = E.conexion.prepareStatement("SELECT anombre FROM album WHERE aid = '" + num + "'");
-            sentencia.executeQuery();
-            return sentencia.getResultSet().getString("anombre");
+            PreparedStatement sentencia = E.conexion.prepareStatement("SELECT atitulo FROM albumes WHERE aid = '" + num + "'");
+            resultado = sentencia.executeQuery();
+            aux = resultado.getString("atitulo");
+
+            resultado.close();
+            sentencia.close();
 
         }catch (SQLException e){
             System.out.println("Error al mostrar el album: " + e.getMessage());
         }
-        return null;
+        return aux;
     }
 
     /**
@@ -444,14 +475,22 @@ public class Model implements Runnable {
      * @return el nombre del artista
      */
     public String verArtista(int num){
+
+        ResultSet resultado = null;
+        String aux = null;
+
         try{
-            PreparedStatement sentencia = E.conexion.prepareStatement("SELECT atnombre FROM artista WHERE atid = '" + num + "'");
-            sentencia.executeQuery();
-            return sentencia.getResultSet().getString("atnombre");
+            PreparedStatement sentencia = E.conexion.prepareStatement("SELECT atnombre FROM artistas WHERE atid = '" + num + "'");
+            resultado = sentencia.executeQuery();
+            aux = resultado.getString("atnombre");
+
+            resultado.close();
+            sentencia.close();
+
     }catch (SQLException e){
             System.out.println("Error al mostrar el artista: " + e.getMessage());
         }
-        return null;
+        return aux;
     }
 
     /**
@@ -460,14 +499,22 @@ public class Model implements Runnable {
      * @return el número del año
      */
     public String verAnyo(int num){
+
+        ResultSet resultado = null;
+        String aux = null;
+
         try{
-            PreparedStatement sentencia = E.conexion.prepareStatement("SELECT ynumero FROM anyo WHERE yid = '" + num + "'");
-            sentencia.executeQuery();
-            return sentencia.getResultSet().getString("ynumero");
+            PreparedStatement sentencia = E.conexion.prepareStatement("SELECT ynumero FROM anyos WHERE yid = '" + num + "'");
+            resultado = sentencia.executeQuery();
+            aux = resultado.getString("ynumero");
+
+            resultado.close();
+            sentencia.close();
+
         }catch (SQLException e){
             System.out.println("Error al mostrar el año: " + e.getMessage());
         }
-        return null;
+        return aux;
     }
 
     /**
@@ -476,14 +523,22 @@ public class Model implements Runnable {
      * @return el título de la canción
      */
     public String verCancion(int num){
+
+        ResultSet resultado = null;
+        String aux = null;
+
         try{
             PreparedStatement sentencia = E.conexion.prepareStatement("SELECT ctitulo FROM canciones WHERE cid = '" + num + "'");
-            sentencia.executeQuery();
-            return sentencia.getResultSet().getString("ctitulo");
+            resultado = sentencia.executeQuery();
+            aux = resultado.getString("ctitulo");
+
+            resultado.close();
+            sentencia.close();
+
         }catch (SQLException e){
             System.out.println("Error al mostrar el título: " + e.getMessage());
         }
-        return null;
+        return aux;
         }
 
     /**
@@ -493,100 +548,80 @@ public class Model implements Runnable {
      */
     public String verLista(int num){
 
+        ResultSet resultado = null;
+        String aux = null;
+
             try{
                 PreparedStatement sentencia = E.conexion.prepareStatement("SELECT lnombre FROM listasrep WHERE lid = '" + num + "'");
-                sentencia.executeQuery();
-                return sentencia.getResultSet().getString("lnombre");
+                resultado = sentencia.executeQuery();
+                aux = resultado.getString("lnombre");
+
+                resultado.close();
+                sentencia.close();
+
             }catch (SQLException e){
                 System.out.println("Error al mostrar el título de la playlist: " + e.getMessage());
             }
-            return null;
+            return aux;
         }
 
     /**
      *
-     *
-     *
-     * A PARTIR DE AQUÍ, LOS MÉTODOS SON PARA PODER REPRODUCIR MÚSICA CON ÉXITO.
-     *
-     *
-     *
+      * @param num id del usuario a mostrar
+     * @return nombre del usuario
      */
+    public String verUsuario(int num){
+
+        ResultSet resultado = null;
+        String aux = null;
+
+        try{
+            PreparedStatement sentencia = E.conexion.prepareStatement("SELECT unombre FROM usuarios WHERE uid = '" + num + "'");
+            resultado = sentencia.executeQuery();
+            aux = resultado.getString("unombre");
+
+            resultado.close();
+            sentencia.close();
+
+        }catch (SQLException e){
+            System.out.println("Error al mostrar el título: " + e.getMessage());
+        }
+        return aux;
+    }
+
+    Thread musicThread;
 
     /**
-     * Método para la reproducción de la música.
+     *
+     * @param musicFiles Array de musica que se va a reproducir
      */
-    public void whatevsMusic() {
-        File musicFolder = new File("src\\music");
-        File[] musicFiles = musicFolder.listFiles((dir, name) -> name.endsWith(".mp3"));
+    public void playMusicPL(ArrayList<Canciones> musicFiles) {
 
         // Crear una lista de nombres de archivos
         List<String> filenames = new ArrayList<>();
-        for (File file : musicFiles) {
-            filenames.add(file.getAbsolutePath());
+        for (Canciones cancion : musicFiles) {
+            filenames.add("src/music/" + cancion.getCtitulo() + ".mp3");
         }
 
         // Crear un objeto Model y reproducir la música en segundo plano
-        Model musicPlayer = new Model();
-        Thread musicThread = new Thread(() -> musicPlayer.playMusic(filenames));
+        musicThread = new Thread(() -> Controller.musicPlayer.playMusic(filenames));
         musicThread.start();
     }
 
     /**
      *
-     * MUSIC PLAYER
-     *
-     *
+     * @param cancion Nombre de la canción que se va a reproducir
      */
+    public void playMusic(String cancion) {
 
-    private Player player;
+        // Crear una lista de nombres de archivos
+        List<String> filenames = new ArrayList<>();
+        filenames.add("src/music/" + cancion + ".mp3");
 
-    /**
-     * Método para la reproducción de la música.
-     * @param filenames
-     */
-    public void playMusic(List<String> filenames) {
-        try {
-            for (String filename : filenames) {
-                /**
-                 * Cargar el archivo de música
-                 */
-                FileInputStream fileInputStream = new FileInputStream(filename);
-
-                /**
-                 * Crear un objeto Player y un objeto AudioDevice para la reproducción de la música
-                 */
-                AudioDevice audioDevice = new JavaSoundAudioDevice();
-                player = new Player(fileInputStream, audioDevice);
-
-                /**
-                 * Iniciar un nuevo hilo para la reproducción de la música
-                 */
-                Thread musicThread = new Thread(this);
-                musicThread.start();
-
-                /**
-                 * Esperar a que el hilo de música termine antes de continuar con el siguiente archivo
-                 */
-                musicThread.join();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Implementar el método run() de la interfaz Runnable para la reproducción de la música en segundo plano
-     */
-    public void run() {
-        try {
-            /**
-             * Reproducir la música
-             */
-            player.play();
-        } catch (JavaLayerException e) {
-            e.printStackTrace();
-        }
+        // Crear un objeto Model y reproducir la música en segundo plano
+        MusicPlayer musicPlayer = new MusicPlayer();
+        musicThread = new Thread(() -> Controller.musicPlayer.playMusic(filenames));
+        musicThread.start();
     }
 }
 

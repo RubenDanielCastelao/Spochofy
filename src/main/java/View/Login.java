@@ -44,6 +44,10 @@ public class Login extends javax.swing.JInternalFrame {
         loginBackground = new javax.swing.JLabel();
 
         setBorder(null);
+        this.setResizable(false);
+        this.setClosable(false);
+        this.setIconifiable(false);
+        this.setMaximizable(false);
 
         loginPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -106,6 +110,7 @@ public class Login extends javax.swing.JInternalFrame {
                 signInButtonActionPerformed(evt);
             }
         });
+        //signInButton.setVisible(false);
         logInButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logInButtonActionPerformed(evt);
@@ -163,11 +168,10 @@ public class Login extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_loginpwdFieldFocusLost
 
     private void signInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInButtonActionPerformed
-        Controller.singin(ui);
+        Controller.openSingin(ui);
     }//GEN-LAST:event_signInButtonActionPerformed
     private void logInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInButtonActionPerformed
-        Controller.login(ui,loginField.getText());
-        this.dispose();
+        Controller.login(ui,loginField.getText(), loginpwdField.getText());
     }//GEN-LAST:event_signInButtonActionPerformed
 
 

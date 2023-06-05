@@ -4,18 +4,37 @@
  */
 package View;
 
+import BD.Canciones;
+import BD.ListasRep;
+import Controller.Controller;
+import Model.Model;
+import com.sun.tools.javac.Main;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.event.WindowStateListener;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 /**
  *
  * @author ruben
  */
 public class crearPlayList extends javax.swing.JInternalFrame {
 
+    MainUI ui;
+
+
     /**
      * Creates new form crearPlayList
      */
-    public crearPlayList() {
+    public crearPlayList(MainUI ui) {
+        this.ui = ui;
         initComponents();
     }
+
+    Model model = new Model();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,6 +64,20 @@ public class crearPlayList extends javax.swing.JInternalFrame {
         playListNameText = new javax.swing.JLabel();
         logoDecoracionCrearListas = new javax.swing.JLabel();
         bgCreatePlayList = new javax.swing.JLabel();
+        searchPlayListButton = new javax.swing.JButton();
+
+        setBorder(null);
+        this.setResizable(false);
+        this.setClosable(false);
+        this.setIconifiable(false);
+        this.setMaximizable(false);
+
+        playListsTable.setBackground(new java.awt.Color(77, 133, 77));
+        playListTable.setBackground(new java.awt.Color(77, 133, 77));
+        songTable.setBackground(new java.awt.Color(77, 133, 77));
+        playListsTable.setFillsViewportHeight(true);
+        playListTable.setFillsViewportHeight(true);
+        songTable.setFillsViewportHeight(true);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -61,45 +94,18 @@ public class crearPlayList extends javax.swing.JInternalFrame {
         jPanel1.add(createplayListField, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 340, 60));
 
         playListsTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
         ));
         jScrollPane2.setViewportView(playListsTable);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 70, 970, 150));
 
         songTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
         ));
         jScrollPane1.setViewportView(songTable);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 630, 970, 270));
 
         playListTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
         ));
         jScrollPane3.setViewportView(playListTable);
 
@@ -125,6 +131,24 @@ public class crearPlayList extends javax.swing.JInternalFrame {
         createPlayListButton.setToolTipText("");
         createPlayListButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 102, 0), new java.awt.Color(0, 153, 0), new java.awt.Color(0, 51, 51), new java.awt.Color(0, 102, 51)));
         jPanel1.add(createPlayListButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 840, 240, 60));
+        createPlayListButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createPlayListButtonActionPerformed(evt);
+            }
+        });
+
+        searchPlayListButton.setBackground(new java.awt.Color(0, 0, 0));
+        searchPlayListButton.setFont(new java.awt.Font("Gotham", 1, 18)); // NOI18N
+        searchPlayListButton.setForeground(new java.awt.Color(255, 255, 255));
+        searchPlayListButton.setText("Buscar PlayList");
+        searchPlayListButton.setToolTipText("");
+        searchPlayListButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 102, 0), new java.awt.Color(0, 153, 0), new java.awt.Color(0, 51, 51), new java.awt.Color(0, 102, 51)));
+        jPanel1.add(searchPlayListButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 770, 240, 60));
+        searchPlayListButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchPlayListButtonActionPerformed(evt);
+            }
+        });
 
         addSongButton.setBackground(new java.awt.Color(0, 0, 0));
         addSongButton.setFont(new java.awt.Font("Gotham", 1, 18)); // NOI18N
@@ -133,6 +157,11 @@ public class crearPlayList extends javax.swing.JInternalFrame {
         addSongButton.setToolTipText("");
         addSongButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 102, 0), new java.awt.Color(0, 153, 0), new java.awt.Color(0, 51, 51), new java.awt.Color(0, 102, 51)));
         jPanel1.add(addSongButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 840, 240, 60));
+        addSongButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addSongButtonActionPerformed(evt);
+            }
+        });
 
         removeSongButton.setBackground(new java.awt.Color(0, 0, 0));
         removeSongButton.setFont(new java.awt.Font("Gotham", 1, 18)); // NOI18N
@@ -201,19 +230,35 @@ public class crearPlayList extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createplayListFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createplayListFieldActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_createplayListFieldActionPerformed
 
     private void changePlayListNameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePlayListNameButtonActionPerformed
-        // TODO add your handling code here:
+        int row = playListsTable.getSelectedRow();
+        Controller.updatePlaylistName(ui, row, createplayListField.getText());
+    }//GEN-LAST:event_changePlayListNameButtonActionPerformed
+    private void createPlayListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePlayListNameButtonActionPerformed
+        Controller.createPlaylist(ui, createplayListField.getText());
+        System.out.println(createplayListField.getText());
     }//GEN-LAST:event_changePlayListNameButtonActionPerformed
 
     private void removeSongButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeSongButtonActionPerformed
-        // TODO add your handling code here:
+        int row = (int) playListsTable.getValueAt(playListsTable.getSelectedRow(),0);
+        int song = (int) playListTable.getValueAt(playListTable.getSelectedRow(), 0);
+        Controller.removeSongFromPlaylist(ui, row, song);
+    }//GEN-LAST:event_removeSongButtonActionPerformed
+    private void addSongButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeSongButtonActionPerformed
+        int row = (int) playListsTable.getValueAt(playListsTable.getSelectedRow(),0);
+        int song = (int) songTable.getValueAt(songTable.getSelectedRow(), 0);
+        Controller.addSongToPlaylist(ui,row,song);
+    }//GEN-LAST:event_removeSongButtonActionPerformed
+    private void searchPlayListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeSongButtonActionPerformed
+        int row = (int) playListsTable.getValueAt(playListsTable.getSelectedRow(),0);
+        Controller.selectPlaylist(ui, row);
     }//GEN-LAST:event_removeSongButtonActionPerformed
 
     private void deletePlayListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePlayListButtonActionPerformed
-        // TODO add your handling code here:
+        int row = (int) playListsTable.getValueAt(playListsTable.getSelectedRow(),0);
+        Controller.deletePlaylist(ui,row);
     }//GEN-LAST:event_deletePlayListButtonActionPerformed
 
 
@@ -232,10 +277,11 @@ public class crearPlayList extends javax.swing.JInternalFrame {
     private javax.swing.JLabel logoDecoracionCrearListas;
     private javax.swing.JLabel playListNameText;
     private javax.swing.JLabel playListShowTableText;
-    private javax.swing.JTable playListTable;
+    public javax.swing.JTable playListTable;
     private javax.swing.JLabel playListTableText;
-    private javax.swing.JTable playListsTable;
+    public javax.swing.JTable playListsTable;
     private javax.swing.JButton removeSongButton;
-    private javax.swing.JTable songTable;
+    public javax.swing.JTable songTable;
+    private javax.swing.JButton searchPlayListButton;
     // End of variables declaration//GEN-END:variables
 }
