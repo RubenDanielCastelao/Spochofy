@@ -372,7 +372,8 @@ public class Model extends Observable {
     public void registrarse(String username, String contra) {
         try {
             PreparedStatement sentencia = E.conexion.prepareStatement("INSERT INTO usuarios VALUES (" + null + ",'" + username + "', '" + contra + "')");
-            sentencia.executeQuery();
+            sentencia.execute();
+
         } catch (SQLException e) {
             System.out.println("Registro fallido: " + e.getMessage());
         }

@@ -110,7 +110,7 @@ public class Login extends javax.swing.JInternalFrame {
                 signInButtonActionPerformed(evt);
             }
         });
-        signInButton.setVisible(false);
+        //signInButton.setVisible(false);
         logInButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logInButtonActionPerformed(evt);

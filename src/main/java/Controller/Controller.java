@@ -25,7 +25,7 @@ public class Controller {
                   view.closeUIs(ui);
                   view.actualizarUsuario(ui, username);
             }else {
-                  JOptionPane.showMessageDialog(null,"Credencioales incorrectas");
+                  JOptionPane.showMessageDialog(null,"Credenciales incorrectas");
             }
       }
       //Abre una interfaz de LogIn

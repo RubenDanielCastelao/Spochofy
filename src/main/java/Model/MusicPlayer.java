@@ -63,6 +63,9 @@ public class MusicPlayer implements Runnable {
         }
     }
 
+    /**
+     * Para la reproducción de musica
+     */
     public void stop() {
         player.close();
     }
