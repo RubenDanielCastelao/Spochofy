@@ -167,10 +167,6 @@ classDiagram
 
 -Reproducción de musica: DONE
 
-#### TODO
-
--Primera versión del programa
-
 ---
 ### Ramas del proyecto
 

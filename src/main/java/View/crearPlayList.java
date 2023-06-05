@@ -233,7 +233,7 @@ public class crearPlayList extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_createplayListFieldActionPerformed
 
     private void changePlayListNameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePlayListNameButtonActionPerformed
-        int row = playListsTable.getSelectedRow();
+        int row = (int) playListsTable.getValueAt(playListsTable.getSelectedRow(),0);
         Controller.updatePlaylistName(ui, row, createplayListField.getText());
     }//GEN-LAST:event_changePlayListNameButtonActionPerformed
     private void createPlayListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePlayListNameButtonActionPerformed

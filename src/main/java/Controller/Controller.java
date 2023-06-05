@@ -134,6 +134,7 @@ public class Controller {
       }
       //Cierra el programa
       public static void exit(MainUI ui){
+            model.desconectar();
             view.exit(ui);
       }
 }
