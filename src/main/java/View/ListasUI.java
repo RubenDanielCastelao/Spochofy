@@ -4,6 +4,16 @@
  */
 package View;
 
+import Controller.Controller;
+import org.netbeans.lib.awtextra.AbsoluteConstraints;
+import org.netbeans.lib.awtextra.AbsoluteLayout;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author ruben
@@ -26,28 +36,44 @@ public class ListasUI extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        stopButton = new javax.swing.JButton();
-        playButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaListas = new javax.swing.JTable();
-        titleListas = new javax.swing.JLabel();
-        logoDecoracionListas = new javax.swing.JLabel();
-        bgListas = new javax.swing.JLabel();
+        jPanel1 = new JPanel();
+        stopButton = new JButton();
+        playButton = new JButton();
+        jScrollPane1 = new JScrollPane();
+        tablaListas = new JTable();
+        titleListas = new JLabel();
+        logoDecoracionListas = new JLabel();
+        bgListas = new JLabel();
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setBorder(null);
+        this.setResizable(false);
+        this.setClosable(false);
+        this.setIconifiable(false);
+        this.setMaximizable(false);
 
-        stopButton.setIcon(new javax.swing.ImageIcon("src/main/java/Img/stopButton.png")); // NOI18N
+        jPanel1.setLayout(new AbsoluteLayout());
+
+        stopButton.setIcon(new ImageIcon("src/main/java/Img/stopButton.png")); // NOI18N
         stopButton.setContentAreaFilled(false);
-        jPanel1.add(stopButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 780, 80, 80));
+        jPanel1.add(stopButton, new AbsoluteConstraints(410, 780, 80, 80));
+        stopButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                stopButtonActionPerformed(evt);
+            }
+        });
 
-        playButton.setIcon(new javax.swing.ImageIcon("src/main/java/Img/playButton.png")); // NOI18N
+        playButton.setIcon(new ImageIcon("src/main/java/Img/playButton.png")); // NOI18N
         playButton.setToolTipText("");
         playButton.setContentAreaFilled(false);
-        jPanel1.add(playButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 780, 80, 80));
+        jPanel1.add(playButton, new AbsoluteConstraints(290, 780, 80, 80));
+        playButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                playButtonActionPerformed(evt);
+            }
+        });
 
-        tablaListas.setBackground(new java.awt.Color(77, 133, 77));
-        tablaListas.setModel(new javax.swing.table.DefaultTableModel(
+        tablaListas.setBackground(new Color(77, 133, 77));
+        tablaListas.setModel(new DefaultTableModel(
             new Object [][] {
 
             },
@@ -55,38 +81,48 @@ public class ListasUI extends javax.swing.JInternalFrame {
 
             }
         ));
-        tablaListas.setFillsViewportHeight(true);
 
-        tablaListas.setGridColor(new java.awt.Color(0, 51, 51));
-        tablaListas.setSelectionBackground(new java.awt.Color(33, 100, 10));
+        tablaListas.setFillsViewportHeight(true);
+        tablaListas.setFont(new Font("Gotham", Font.BOLD, 16));
+
+        tablaListas.setGridColor(new Color(0, 51, 51));
+        tablaListas.setSelectionBackground(new Color(33, 100, 10));
         jScrollPane1.setViewportView(tablaListas);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 20, 1070, 880));
+        jPanel1.add(jScrollPane1, new AbsoluteConstraints(820, 20, 1070, 880));
 
-        titleListas.setFont(new java.awt.Font("Gotham", 1, 36)); // NOI18N
-        titleListas.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(titleListas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 770, 80));
+        titleListas.setFont(new Font("Gotham", 1, 36)); // NOI18N
+        titleListas.setForeground(new Color(255, 255, 255));
+        jPanel1.add(titleListas, new AbsoluteConstraints(30, 20, 770, 80));
 
-        logoDecoracionListas.setIcon(new javax.swing.ImageIcon("src/main/java/Img/spochofyLogoGrande.png")); // NOI18N
-        jPanel1.add(logoDecoracionListas, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 510, 420));
+        logoDecoracionListas.setIcon(new ImageIcon("src/main/java/Img/spochofyLogoGrande.png")); // NOI18N
+        jPanel1.add(logoDecoracionListas, new AbsoluteConstraints(190, 210, 510, 420));
 
-        bgListas.setIcon(new javax.swing.ImageIcon("src/main/java/Img/background.png")); // NOI18N
-        jPanel1.add(bgListas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1910, 920));
+        bgListas.setIcon(new ImageIcon("src/main/java/Img/background.png")); // NOI18N
+        jPanel1.add(bgListas, new AbsoluteConstraints(0, 0, 1910, 920));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
+        int lid = (int) tablaListas.getValueAt(tablaListas.getSelectedRow(),0);
+        Controller.playMusic(lid);
+    }//GEN-LAST:event_playButtonActionPerformed
+    private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
+        Controller.stopMusic();
+    }//GEN-LAST:event_playButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bgListas;
@@ -94,8 +130,8 @@ public class ListasUI extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable tablaListas;
-    private javax.swing.JButton playButton;
-    private javax.swing.JButton stopButton;
+    public javax.swing.JButton playButton;
+    public javax.swing.JButton stopButton;
     public javax.swing.JLabel titleListas;
     // End of variables declaration//GEN-END:variables
 }

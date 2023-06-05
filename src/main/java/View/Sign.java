@@ -44,6 +44,10 @@ public class Sign extends javax.swing.JInternalFrame {
         signinBackground = new javax.swing.JLabel();
 
         setBorder(null);
+        this.setResizable(false);
+        this.setClosable(false);
+        this.setIconifiable(false);
+        this.setMaximizable(false);
 
         loginPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -95,6 +99,11 @@ public class Sign extends javax.swing.JInternalFrame {
         signinTextLabel.setForeground(new java.awt.Color(255, 255, 255));
         signinTextLabel.setText("USUARIO:");
         loginPanel.add(signinTextLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 160, 40));
+        signInButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signinButtonActionPerformed(evt);
+            }
+        });
 
         cancelButton.setBackground(new java.awt.Color(0, 0, 0));
         cancelButton.setFont(new java.awt.Font("Gotham", 1, 18)); // NOI18N
@@ -157,9 +166,12 @@ public class Sign extends javax.swing.JInternalFrame {
     private void signpwdFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_signpwdFieldFocusLost
 
     }//GEN-LAST:event_signpwdFieldFocusLost
-
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         Controller.openLogin(ui);
+    }//GEN-LAST:event_cancelButtonActionPerformed
+    private void signinButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        Controller.signin(signinField.getText(), signpwdField.getText());
+        this.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
 

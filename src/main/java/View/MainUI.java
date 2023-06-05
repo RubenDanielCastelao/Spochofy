@@ -6,6 +6,7 @@ package View;
 
 import Controller.Controller;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 
 /**
@@ -20,6 +21,7 @@ public class MainUI extends javax.swing.JFrame {
      */
     public MainUI() {
         initComponents();
+        Controller.openLogin(this);
     }
 
     /**
@@ -47,6 +49,7 @@ public class MainUI extends javax.swing.JFrame {
         usuarioText = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        this.setResizable(false);
 
         backgroundLabel.setIcon(new javax.swing.ImageIcon("src/main/java/Img/background.png")); // NOI18N
 
@@ -153,8 +156,9 @@ public class MainUI extends javax.swing.JFrame {
         anyosManu.setPreferredSize(new java.awt.Dimension(270, 76));
         menuBarMain.add(anyosManu);
 
-        usuarioText.setText("USUARIO: ");
+        usuarioText.setText("");
         usuarioText.setFont(new java.awt.Font("Gotham", 1, 18)); // NOI18N
+        usuarioText.setForeground(Color.white);
         menuBarMain.add(usuarioText);
 
         setJMenuBar(menuBarMain);
@@ -204,14 +208,13 @@ public class MainUI extends javax.swing.JFrame {
     }//GEN-LAST:event_cancionesMenuActionPerformed
 
     private void createListasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createListasActionPerformed
-        Controller.createPlayList(this);
+        Controller.createPlayListUI(this);
     }//GEN-LAST:event_createListasActionPerformed
 
     private void showListasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showListasActionPerformed
         Controller.playlists(this);
     }//GEN-LAST:event_showListasActionPerformed
     private void desktopMainMouseClicked(MouseEvent evt) {//GEN-FIRST:event_showListasActionPerformed
-        Controller.openLogin(this);
     }//GEN-LAST:event_showListasActionPerformed
     private void logOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showListasActionPerformed
         Controller.openLogin(this);
